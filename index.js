@@ -72,3 +72,24 @@ app.delete("/api/reviews/:id", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
+
+// ---- PUBLISHERS API ----
+
+// temporary memory storage
+let publishers = [];
+
+// GET all publishers
+app.get("/api/publishers", (req, res) => {
+  res.json(publishers);
+});
+
+// CREATE publisher
+app.post("/api/publishers", (req, res) => {
+  const publisher = {
+    id: Date.now(),
+    ...req.body,
+  };
+
+  publishers.push(publisher);
+  res.json(publisher);
+});
