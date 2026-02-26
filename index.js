@@ -30,18 +30,18 @@ function writeData(data) {
 ----------------------------*/
 
 // Health check
-app.get("/", (req, res) => {
+app.get("/api/reviews", (req, res) => {
   res.send("Andromedia Backend Running 🚀");
 });
 
 // Get all reviews
-app.get("/reviews", (req, res) => {
+app.get("/api/reviews", (req, res) => {
   const reviews = readData();
   res.json(reviews.reverse());
 });
 
 // Add new review
-app.post("/reviews", (req, res) => {
+app.post("/api/reviews", (req, res) => {
   const reviews = readData();
 
   const newReview = {
@@ -59,7 +59,7 @@ app.post("/reviews", (req, res) => {
 });
 
 // Delete review (optional)
-app.delete("/reviews/:id", (req, res) => {
+app.delete("/api/reviews/:id", (req, res) => {
   let reviews = readData();
   reviews = reviews.filter(r => r.id != req.params.id);
 
